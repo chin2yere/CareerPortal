@@ -84,7 +84,15 @@ export default function Posts() {
             Search
           </button>
         </div>
-        <p>{console.log(parsedPosts)}</p>
+
+        {parsedPosts.map((post) => (
+          <PostCard
+            key={post.id}
+            title={post.title}
+            body={post.body}
+            likes={post.likes}
+          />
+        ))}
       </div>
     </div>
   );
