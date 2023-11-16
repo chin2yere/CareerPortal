@@ -1,11 +1,13 @@
 import React from "react";
 import "./Posts.css";
 import { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import PostCard from "../../Components/PostCard/PostCard";
 //import { useState } from "react";
 
 export default function Posts() {
+  const navigate = useNavigate();
   const { userContext } = useContext(UserContext);
   const [allPosts, setAllPosts] = useState([]);
   const [parsedPosts, setParsedPosts] = useState([]);
@@ -27,6 +29,7 @@ export default function Posts() {
     };
     fetchPosts();
   }, []);
+
   function runSearch(text) {
     if (text != "") {
       const inputText = text.toLowerCase();
@@ -43,6 +46,10 @@ export default function Posts() {
       setParsedPosts(allPosts);
     }
   }
+  function navigateToHome() {
+    navigate("/");
+  }
+  //console.log(parsedPosts);
   return (
     <div>
       <div className="row1-posts">
@@ -83,16 +90,31 @@ export default function Posts() {
           >
             Search
           </button>
+          &nbsp;&nbsp;&nbsp;
+          <button
+            onClick={() => {
+              navigateToHome();
+            }}
+            className="searchBarButton"
+          >
+            Go to home page
+          </button>
         </div>
 
-        {parsedPosts.map((post) => (
-          <PostCard
-            key={post.id}
-            title={post.title}
-            body={post.body}
-            likes={post.likes}
-          />
-        ))}
+        {parsedPosts.map(
+          (post) =>
+            post.pending == false && (
+              <PostCard
+                key={post.id}
+                title={post.title}
+                body={post.body}
+                likes={post.likes}
+                id={post.id}
+                githubId={post.githubid}
+                pending={post.pending}
+              />
+            )
+        )}
       </div>
     </div>
   );

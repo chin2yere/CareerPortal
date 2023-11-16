@@ -5,7 +5,14 @@ import { FcLike } from "react-icons/fc";
 import { UserContext } from "../../UserContext";
 import { useEffect, useState, useContext } from "react";
 
-export default function PostCard({ title, body, likes }) {
+export default function PostCard({
+  title,
+  body,
+  likes,
+  id,
+  githubId,
+  pending,
+}) {
   const { userContext } = useContext(UserContext);
   const [liked, setLiked] = useState(() => {
     if (likes[userContext.id] && likes[userContext.id] === true) {
@@ -14,6 +21,7 @@ export default function PostCard({ title, body, likes }) {
       return false;
     }
   });
+  //console.log(githubId);
   function toggleLike() {
     setLiked(!liked);
   }
@@ -24,12 +32,55 @@ export default function PostCard({ title, body, likes }) {
       return <FcLikePlaceholder />;
     }
   }
-  useEffect(() => {}, []);
+
+  const handleUpdatePosts = async (e) => {
+    //e.preventDefault();
+
+    try {
+      if (likes[userContext.id]) {
+        likes[userContext.id] = !likes[userContext.id];
+      } else {
+        likes[userContext.id] = true;
+      }
+      // Make the create product API request
+
+      const response = await fetch(`http://localhost:3000/post/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          githubId,
+          title,
+          body,
+          likes,
+          pending,
+        }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        console.log(response);
+      } else {
+        // Handle the create failure case
+        alert("creation failed");
+      }
+    } catch (error) {
+      // Handle any network or API request errors
+      alert("creation failed: " + error);
+    }
+  };
+
+  function handleClickLike() {
+    toggleLike();
+    handleUpdatePosts();
+  }
+  //useEffect(() => {}, []);
   return (
     <div className="post-card">
       <h3>{title}</h3>
       <p>{body}</p>
-      <button onClick={toggleLike}>{likedButton()}</button>
+      <button onClick={handleClickLike}>{likedButton()}</button>
     </div>
   );
 }
