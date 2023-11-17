@@ -1,23 +1,60 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./AdminCards.css";
-export default function AdminCards({ title, body, githubid, likes, pending }) {
+export default function AdminCards({
+  title,
+  body,
+  githubid,
+  likes,
+  pending,
+  id,
+}) {
   const [falsePending, setFalsePending] = useState(pending);
-  function approveButton() {
-    let temp = falsePending;
-    function toggleApproval() {
-      //pending = !pending;
-      temp = !falsePending;
-      setFalsePending(temp);
+  function toggleApproval() {
+    setFalsePending(!falsePending);
+  }
+  const handleUpdatePosts = async (e) => {
+    //e.preventDefault();
+
+    // Make the create product API request
+    try {
+      const response = await fetch(`http://localhost:3000/post/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          githubId: githubid,
+          title,
+          body,
+          likes,
+          pending: !falsePending,
+        }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        console.log(response);
+      } else {
+        // Handle the create failure case
+        alert("creation failed");
+      }
+    } catch (error) {
+      // Handle any network or API request errors
+      alert("creation failed: " + error);
     }
-    if (pending == true || temp == true) {
+  };
+  function approveButton() {
+    //let temp = falsePending;
+
+    if (falsePending == true) {
       return (
         <button
           className="button-opportunity-card"
-          onClick={
-            //console.log(falsePending);
-            toggleApproval
-          }
+          onClick={() => {
+            toggleApproval();
+            handleUpdatePosts();
+          }}
         >
           Approve
         </button>
@@ -26,7 +63,10 @@ export default function AdminCards({ title, body, githubid, likes, pending }) {
       return (
         <button
           className="button-opportunity-card-bookmarked"
-          onClick={() => toggleApproval}
+          onClick={() => {
+            toggleApproval();
+            handleUpdatePosts();
+          }}
         >
           Remove approval
         </button>
