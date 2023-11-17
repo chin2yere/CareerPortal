@@ -2,11 +2,11 @@ import React from "react";
 import { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
-import "./OpportunityCard.css";
+import "./BookmarkCard.css";
 
-export default function OpportunityCard({ description, location, id }) {
+export default function BookmarkCard({ description, location, id }) {
   const { userContext, setUserContext } = useContext(UserContext);
-  console.log(userContext);
+  //console.log(userContext);
   const [bookedmarkedJobs, setBookmarkedJobs] = useState({
     ...userContext.savedjobs,
   });
@@ -64,45 +64,26 @@ export default function OpportunityCard({ description, location, id }) {
       }
     };
 
-    if (bookedmarkedJobs[id] && bookedmarkedJobs[id] == true) {
-      function toggleBookmarked() {
-        const temporaryValue = { ...bookedmarkedJobs };
-        temporaryValue[id] = false;
-        setBookmarkedJobs({ ...temporaryValue });
-      }
-      return (
-        <button
-          onClick={() => {
-            toggleBookmarked();
-            handleUpdateBookmarks();
-          }}
-          className="button-opportunity-card-bookmarked"
-        >
-          bookmarked
-        </button>
-      );
-    } else {
-      function toggleBookmarked() {
-        const temporaryValue = { ...bookedmarkedJobs };
-        temporaryValue[id] = true;
-        setBookmarkedJobs({ ...temporaryValue });
-      }
-      return (
-        <button
-          onClick={() => {
-            toggleBookmarked();
-            handleUpdateBookmarks();
-          }}
-          className="button-opportunity-card"
-        >
-          bookmark
-        </button>
-      );
+    function toggleBookmarked() {
+      const temporaryValue = { ...bookedmarkedJobs };
+      temporaryValue[id] = false;
+      setBookmarkedJobs({ ...temporaryValue });
     }
+    return (
+      <button
+        onClick={() => {
+          toggleBookmarked();
+          handleUpdateBookmarks();
+        }}
+        className="button-opportunity-card-bookmarked"
+      >
+        click to Unbookmark
+      </button>
+    );
   }
 
   return (
-    <div className="opportunity-card">
+    <div className="bookmark-card">
       <h3>{description}</h3>
       <p>{location}</p>
       <div>{bookmarkButton()}</div>

@@ -1,6 +1,5 @@
 import { createContext } from "react";
 
 const UserContext = createContext();
-export {
-    UserContext
-}
+const JobsContext = createContext();
+export { UserContext, JobsContext };

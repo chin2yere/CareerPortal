@@ -5,8 +5,11 @@
     "avatarUrl": "https://example.com/avatar1.jpg",
     "accessToken": "token1",
     "savedJobs": {
-      "101": true,
-      "102": true
+      "1": true,
+      "12": true,
+      "2": true,
+      "3": true,
+      "4": true
     },
     "Role": "Student",
     "is_admin": false
@@ -17,21 +20,21 @@
     "avatarUrl": "https://example.com/avatar2.jpg",
     "accessToken": "token2",
     "savedJobs": {
-      "103": true,
-      "104": true
+      "2": true,
+      "3": true
     },
     "Role": "Recruiter",
-    "is_admin":false
+    "is_admin": false
   },
-  
+
   {
     "githubId": 3,
     "username": "user3",
     "avatarUrl": "https://example.com/avatar3.jpg",
     "accessToken": "token3",
     "savedJobs": {
-      "105": true,
-      "106": true
+      "4": true,
+      "5": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -42,8 +45,7 @@
     "avatarUrl": "https://example.com/avatar4.jpg",
     "accessToken": "token4",
     "savedJobs": {
-      "107": true,
-      "108": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -54,8 +56,7 @@
     "avatarUrl": "https://example.com/avatar5.jpg",
     "accessToken": "token5",
     "savedJobs": {
-      "109": true,
-      "110": true
+      "1": true
     },
     "Role": "Admin",
     "is_admin": true
@@ -66,8 +67,7 @@
     "avatarUrl": "https://example.com/avatar6.jpg",
     "accessToken": "token6",
     "savedJobs": {
-      "111": true,
-      "112": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -78,8 +78,7 @@
     "avatarUrl": "https://example.com/avatar7.jpg",
     "accessToken": "token7",
     "savedJobs": {
-      "113": true,
-      "114": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -90,8 +89,7 @@
     "avatarUrl": "https://example.com/avatar8.jpg",
     "accessToken": "token8",
     "savedJobs": {
-      "115": true,
-      "116": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -102,8 +100,7 @@
     "avatarUrl": "https://example.com/avatar9.jpg",
     "accessToken": "token9",
     "savedJobs": {
-      "117": true,
-      "118": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false
@@ -114,8 +111,7 @@
     "avatarUrl": "https://example.com/avatar10.jpg",
     "accessToken": "token10",
     "savedJobs": {
-      "119": true,
-      "120": true
+      "1": true
     },
     "Role": "Recruiter",
     "is_admin": false

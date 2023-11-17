@@ -32,7 +32,7 @@ const getUserByConstraint = async (req, res) => {
   try {
     const constraint = req.params.constraint;
     const value = req.params.value;
-    console.log(constraint, value);
+    //console.log(constraint, value);
     const results = await users_sequelize.findOne(constraint, parseInt(value));
     console.log(results.rows);
     res.status(200).json(results.rows[0]);
@@ -70,6 +70,7 @@ const createUser = async (req, res) => {
 
 // update existing blog post
 const updateUser = async (req, res) => {
+  //console.log(req.body);
   try {
     const {
       githubId,
@@ -90,6 +91,7 @@ const updateUser = async (req, res) => {
       Role,
       is_admin
     );
+    //console.log(results);
     res.status(201).json(results.rows);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -119,7 +121,8 @@ const getCompanys = async (req, res) => {
 
 const getCompanysByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
+    const constraint = req.params.constraint;
+    const value = req.params.value;
     const results = await company_sequelize.findAllByConstraint(
       constraint,
       value
@@ -133,7 +136,8 @@ const getCompanysByConstraint = async (req, res) => {
 // get video games by ID from the database
 const getCompanyByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
+    const constraint = req.params.constraint;
+    const value = req.params.value;
     const results = await company_sequelize.findOne(constraint, value);
     res.status(200).json(results.rows[0]);
   } catch (error) {
@@ -197,7 +201,8 @@ const getPosts = async (req, res) => {
 
 const getPostsByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
+    const constraint = req.params.constraint;
+    const value = req.params.value;
     const results = await post_sequelize.findAllByConstraint(constraint, value);
     res.status(200).json(results.rows);
   } catch (error) {
@@ -208,7 +213,8 @@ const getPostsByConstraint = async (req, res) => {
 // get video games by ID from the database
 const getPostByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
+    const constraint = req.params.constraint;
+    const value = req.params.value;
     const results = await post_sequelize.findOne(constraint, value);
     res.status(200).json(results.rows[0]);
   } catch (error) {
@@ -275,7 +281,8 @@ const getJobs = async (req, res) => {
 
 const getJobsByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
+    const constraint = req.params.constraint;
+    const value = req.params.value;
     const results = await jobs_sequelize.findAllByConstraint(constraint, value);
     res.status(200).json(results.rows);
   } catch (error) {
@@ -286,8 +293,10 @@ const getJobsByConstraint = async (req, res) => {
 // get video games by ID from the database
 const getJobByConstraint = async (req, res) => {
   try {
-    const { constraint, value } = req.body;
-    const results = await jobs_sequelize.findOne(constraint, value);
+    const constraint = req.params.constraint;
+    const value = req.params.value;
+    //console.log(req.body);
+    const results = await jobs_sequelize.findOne(constraint, parseInt(value));
     res.status(200).json(results.rows[0]);
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import "./CreatePosts.css";
 
@@ -45,7 +45,10 @@ export default function CreatePosts() {
   };
   return (
     <div className="create-posts">
-      <h3>Create a post request below</h3>
+      <Link to="/">
+        <button>Go to Home</button>
+      </Link>
+      <h3>Create a post request below</h3>{" "}
       <p>
         Please note: It takes 2 business days for our admins to review your post
         and either approve/dissapprove it

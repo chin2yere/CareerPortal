@@ -22,6 +22,19 @@ export default function Login() {
       alert("Login failed: " + error);
     }
   };
+  const handleAdminLogin = async () => {
+    try {
+      const url = `http://localhost:3000/user/${"githubId"}/${5}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+      setUserContext(data);
+      navigate("/admin");
+    } catch (error) {
+      // Handle any network or API request errors
+      alert("Login failed: " + error);
+    }
+  };
 
   return (
     <div className="login">
@@ -50,7 +63,9 @@ export default function Login() {
           technology and equipping students with the skills and knowledge needed
           to excel in the digital landscape.
         </p>
-        <button className="login-button">Login as admin</button>
+        <button className="login-button" onClick={handleAdminLogin}>
+          Login as admin
+        </button>
         <br></br>
         <br />
         <br />

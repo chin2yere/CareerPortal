@@ -17,6 +17,9 @@ export default function Home() {
   const navigateToCreatePosts = () => {
     navigate("/posts/create");
   };
+  const navigateToJobs = () => {
+    navigate("/jobs");
+  };
   return (
     <>
       <div>
@@ -55,7 +58,7 @@ export default function Home() {
             with the skills and knowledge needed to navigate the ever-evolving
             landscape of computer science.
           </p>
-          <button>View opportunities</button>
+          <button onClick={navigateToJobs}>View opportunities</button>
         </div>
       </div>
       <div className="row2-home">
@@ -121,7 +124,7 @@ export default function Home() {
             employers seeking top-tier talent and individuals eager to embark on
             impactful professional journeys.
           </p>
-          <button>Post a job</button>
+          <button onClick={() => navigate("/jobs/create")}>Post a job</button>
         </div>
       </div>
       <div className="row4-home">
@@ -131,7 +134,9 @@ export default function Home() {
           Have you already started a job process and have a few jobs bookmarked.
           Click here to continue the job process
         </p>
-        <button>View bookmarked jobs</button>
+        <button onClick={() => navigate("/bookmarks")}>
+          View bookmarked jobs
+        </button>
       </div>
     </>
   );
